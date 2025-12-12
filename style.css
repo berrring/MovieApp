@@ -175,22 +175,43 @@ header { display: flex; justify-content: space-between; align-items: center; mar
 /* =========================================
    МОБИЛЬНАЯ АДАПТАЦИЯ
    ========================================= */
+/* =========================================
+   МОБИЛЬНАЯ АДАПТАЦИЯ
+   ========================================= */
 @media (max-width: 1024px) {
-    .container { flex-direction: column; }
+    /* !!! ВОТ ЭТО ИСПРАВЛЕНИЕ !!! */
+    body {
+        height: auto;        /* Разрешаем сайту быть длиннее экрана */
+        overflow-y: auto;    /* Включаем прокрутку */
+        overflow-x: hidden;  /* Убираем горизонтальный скролл */
+    }
+
+    .container { 
+        flex-direction: column; 
+        height: auto;        /* Контейнер тоже должен растягиваться */
+    }
+
     .sidebar {
         width: 100%; height: auto; padding: 10px 20px;
         border-right: none; border-top: 1px solid #1F2230;
         position: fixed; bottom: 0; left: 0; z-index: 1000;
         flex-direction: row; justify-content: space-around; align-items: center;
-        background: #0F111A; /* Чтобы меню не было прозрачным */
+        background: #0F111A; 
     }
+    
     .logo, .logout-btn { display: none; }
     .menu { flex-direction: row; gap: 0; width: 100%; justify-content: space-around; }
     .menu-item { flex-direction: column; gap: 5px; padding: 8px 12px; border-radius: 12px; font-size: 10px; }
     .menu-item i { font-size: 20px; }
-    .menu-item.active::after { display: none; } /* Убираем полоску на мобильных */
-    .menu-item.active { box-shadow: none; background: #3B82F6; } /* Упрощаем стиль на мобильных */
-    .main-content { padding: 20px; height: auto; overflow-y: visible; padding-bottom: 90px; }
+    .menu-item.active::after { display: none; } 
+    .menu-item.active { box-shadow: none; background: #3B82F6; } 
+    
+    .main-content { 
+        padding: 20px; 
+        height: auto; 
+        overflow-y: visible; 
+        padding-bottom: 90px; /* Отступ снизу, чтобы меню не перекрывало контент */
+    }
 }
 
 @media (max-width: 768px) {
