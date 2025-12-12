@@ -1,33 +1,57 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AnimeBox - Login</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="login-body">
     
     <div class="login-card">
-        <h1 style="color: #3B82F6; margin-bottom: 30px; font-weight: 700;">AnimeBoX</h1>
+        <div class="login-header">
+            <h1>AnimeBox<span>.</span></h1>
+            <p>Welcome back!</p>
+        </div>
+
         <form id="loginForm">
-            <input type="text" id="username" placeholder="Username (admin)" required>
-            <input type="password" id="password" placeholder="Password (123)" required>
+            <div class="input-group">
+                <input type="text" id="username" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+            
             <button type="submit" class="login-btn">Log In</button>
         </form>
+
+        <div class="login-footer">
+            <p>Demo access: <span>admin</span> / <span>123</span></p>
+        </div>
     </div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const user = document.getElementById('username').value;
-            const pass = document.getElementById('password').value;
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Останавливаем перезагрузку страницы
 
+            // Получаем значения, убираем пробелы по краям (.trim) и превращаем в маленькие буквы (.toLowerCase)
+            var user = document.getElementById('username').value.trim().toLowerCase();
+            var pass = document.getElementById('password').value.trim();
+
+            console.log("Попытка входа:", user, pass); // Для проверки в консоли (F12)
+
+            // Проверка: логин 'admin' и пароль '123'
             if (user === 'admin' && pass === '123') {
+                // Сохраняем, что мы вошли
                 localStorage.setItem('isAuth', 'true');
-                localStorage.setItem('userName', 'Stanley Ameh');
+                localStorage.setItem('userName', 'Admin'); 
+                
+                // Перенаправляем на главную
                 window.location.href = 'index.html';
             } else {
-                alert('Wrong password! Try: admin / 123');
+                // Если ошибка
+                alert('Неверный логин или пароль!\nПопробуйте:\nЛогин: admin\nПароль: 123');
             }
         });
     </script>
